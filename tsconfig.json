@@ -7,8 +7,11 @@
       "@assets": ["./src/assets"],
       "@assetsBrand": ["./src/assets/DrPedro"],
       "@components": ["./src/components"],
+      "@global": ["./src/global"],
+      "@helpers": ["./src/helpers"],
       "@modules": ["./src/modules"],
       "@presentational": ["./src/presentational"],
+      "@server": ["./src/server"],
       "@types": ["./src/types"]
     },
     "strict": true

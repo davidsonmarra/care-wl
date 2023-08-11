@@ -10,8 +10,15 @@ import './environments';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from 'styled-components/native';
 
-import {theme} from './src/global';
+import {theme} from '@global';
 import {Login} from '@presentational';
+import {makeServer} from '@server';
+
+if (window.server) {
+  server.shutdown();
+}
+
+makeServer();
 
 function App() {
   return (

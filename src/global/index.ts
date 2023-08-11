@@ -1,1 +1,2 @@
-export {theme} from './theme';
+export {theme} from './styles/theme';
+export {api} from './services';

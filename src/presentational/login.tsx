@@ -1,13 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled, {useTheme} from 'styled-components/native';
 import {logoImg} from '@assets';
 import {Button, Input, Text} from '@components';
+import {api} from '../global';
 
 export function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     fonts: {size},
   } = useTheme();
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try {
+      const {data} = await api.post('/login');
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <StyledContainer>
       <StyledContent>
@@ -39,7 +54,7 @@ export function Login() {
         </StyledSection>
       </StyledContent>
       <StyledButtonContainer>
-        <Button type="primary">
+        <Button type="primary" onPress={handleLogin} isLoading={isLoading}>
           <Text type="btn-primary">Entrar</Text>
         </Button>
         <Button type="secondary">

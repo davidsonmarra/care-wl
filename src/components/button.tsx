@@ -13,14 +13,20 @@ export function Button({
   isLoading = false,
   size = 18,
   children,
+  disabled,
+  ...rest
 }: ButtonProps) {
   const buttonType = {
     primary: (
-      <StyledButtonPrimary>
+      <StyledButtonPrimary disabled={disabled || isLoading} {...rest}>
         {isLoading ? <StyledLoading size={size} /> : children}
       </StyledButtonPrimary>
     ),
-    secondary: <StyledButtonSecondary>{children}</StyledButtonSecondary>,
+    secondary: (
+      <StyledButtonSecondary disabled={disabled || isLoading} {...rest}>
+        {children}
+      </StyledButtonSecondary>
+    ),
   };
 
   return buttonType[type];
