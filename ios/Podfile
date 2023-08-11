@@ -25,7 +25,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'careWL' do
+target 'DraIgraine' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -46,6 +46,11 @@ target 'careWL' do
   )
 
   target 'careWLTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  target 'DrPedro' do
     inherit! :complete
     # Pods for testing
   end
