@@ -1,10 +1,13 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import styled from 'styled-components/native';
+import styled, {useTheme} from 'styled-components/native';
 import {logoImg} from '@assets';
 import {Button, Input, Text} from '@components';
 
 export function Login() {
+  const {
+    fonts: {size},
+  } = useTheme();
   return (
     <StyledContainer>
       <StyledContent>
@@ -30,7 +33,7 @@ export function Login() {
             type="password"
           />
           <StyledDivider />
-          <Button type="secondary">
+          <Button type="secondary" size={size.md}>
             <Text type="btn-secondary">Esqueci minha senha</Text>
           </Button>
         </StyledSection>

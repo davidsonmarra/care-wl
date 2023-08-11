@@ -47,8 +47,9 @@ public class WhiteLabelConfig extends ReactContextBaseJavaModule {
         WritableMap colorsMap = Arguments.createMap();
         colorsMap.putString("background", "#d2ebfa");
         colorsMap.putString("primary", "#037fff");
-        colorsMap.putString("secondary", "#f1f1f1");
-        colorsMap.putString("title", "#f1f1f1");
+        colorsMap.putString("secondary", "#ffffff");
+        colorsMap.putString("disabled", "#037fff55");
+        colorsMap.putString("text", "#303030");
         colorsMap.putString("heroTitle", "#f1f1f1");
         colorsMap.putString("brightness", "rgba(0, 0, 0, 0.5)");
         colorsMap.putString("cardBackground", "#f1f1f111");

@@ -22,8 +22,9 @@
         @"colors": @{
           @"background": @"#d0baba",
           @"primary": @"#732728",
-          @"secondary": @"#f1f1f1",
-          @"title": @"#f1f1f1",
+          @"secondary": @"#ffffff",
+          @"disabled": @"#73272855",
+          @"text": @"#303030",
           @"heroTitle": @"#f1f1f1",
           @"brightness": @"rgba(0, 0, 0, 0.5)",
           @"cardBackground": @"#f1f1f111",

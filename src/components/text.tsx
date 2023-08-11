@@ -20,17 +20,19 @@ export function Text({type, children}: TextProps) {
 const StyledH1 = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary.bold};
   font-size: ${({theme}) => theme.fonts.size.xl}px;
+  color: ${({theme}) => theme.colors.text};
 `;
 
 const StyledH2 = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary.semiBold};
   font-size: ${({theme}) => theme.fonts.size.lg}px;
+  color: ${({theme}) => theme.colors.text};
 `;
 
 const StyledButtonPrimary = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary.bold};
   font-size: ${({theme}) => theme.fonts.size.md}px;
-  color: #fff;
+  color: ${({theme}) => theme.colors.secondary};
 `;
 
 const StyledButtonSecondary = styled.Text`

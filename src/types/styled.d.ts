@@ -5,6 +5,9 @@ declare module 'styled-components/native' {
     colors: {
       background: string;
       primary: string;
+      secondary: string;
+      disabled: string;
+      text: string;
     };
     fonts: {
       primary: {
