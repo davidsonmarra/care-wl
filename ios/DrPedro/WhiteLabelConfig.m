@@ -21,7 +21,7 @@
       @"theme": @{
         @"colors": @{
           @"background": @"#d2ebfa",
-          @"primary": @"#a92621",
+          @"primary": @"#037fff",
           @"secondary": @"#f1f1f1",
           @"title": @"#f1f1f1",
           @"heroTitle": @"#f1f1f1",

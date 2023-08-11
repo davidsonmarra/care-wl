@@ -4,6 +4,9 @@
     "baseUrl": ".",
     "typeRoots": ["./src/types"],
     "paths": {
+      "@assets": ["./src/assets"],
+      "@assetsBrand": ["./src/assets/DrPedro"],
+      "@components": ["./src/components"],
       "@modules": ["./src/modules"],
       "@presentational": ["./src/presentational"],
       "@types": ["./src/types"]
