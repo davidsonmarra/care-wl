@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:DraIgraine": "react-native run-android --mode 'draIgraineDebug' --appIdSuffix 'draigraine'",
+    "android:DrPedro": "react-native run-android --mode 'drPedroDebug' --appIdSuffix 'drpedro'",
     "commit": "git-cz",
     "ios": "react-native run-ios",
+    "ios:DraIgraine": "react-native run-ios --scheme 'DraIgraine'",
+    "ios:DrPedro": "react-native run-ios --scheme 'DrPedro'",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
     "start": "react-native start",
