@@ -6,16 +6,19 @@
  */
 
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {ThemeProvider} from 'styled-components/native';
 
-import {WhiteLabelConfig} from './src/modules';
+import {WhiteLabelConfig} from '@modules';
+import {Login} from '@presentational';
 
 function App() {
-  console.log('THEME', WhiteLabelConfig.THEME);
   return (
-    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-      <Text>{WhiteLabelConfig.APP_NAME}</Text>
-    </View>
+    <ThemeProvider theme={WhiteLabelConfig.THEME}>
+      <SafeAreaProvider>
+        <Login />
+      </SafeAreaProvider>
+    </ThemeProvider>
   );
 }
 export default App;

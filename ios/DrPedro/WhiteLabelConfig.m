@@ -19,13 +19,15 @@
   - (NSDictionary *)constantsToExport {
     return @{
       @"theme": @{
-        @"background": @"#0000ff",
-        @"primary": @"#a92621",
-        @"secondary": @"#f1f1f1",
-        @"title": @"#f1f1f1",
-        @"heroTitle": @"#f1f1f1",
-        @"brightness": @"rgba(0, 0, 0, 0.5)",
-        @"cardBackground": @"#f1f1f111",
+        @"colors": @{
+          @"background": @"#d2ebfa",
+          @"primary": @"#a92621",
+          @"secondary": @"#f1f1f1",
+          @"title": @"#f1f1f1",
+          @"heroTitle": @"#f1f1f1",
+          @"brightness": @"rgba(0, 0, 0, 0.5)",
+          @"cardBackground": @"#f1f1f111",
+        },
         @"mode": @"light"
       }
     };
