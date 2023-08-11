@@ -101,6 +101,19 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    flavorDimensions "whitelabel"
+    productFlavors {
+        draIgraine {
+            dimension "whitelabel"
+            applicationIdSuffix ".draigraine"
+            resValue "string", "white_label_app_name", "Dra. Igraine"
+        }
+        drPedro {
+            dimension "whitelabel"
+            applicationIdSuffix ".drpedro"
+            resValue "string", "white_label_app_name", "Dr. Pedro"
+        }
+    }
 }
 
 dependencies {
