@@ -10,12 +10,12 @@ import './environments';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from 'styled-components/native';
 
-import {WhiteLabelConfig} from '@modules';
+import {theme} from './src/global';
 import {Login} from '@presentational';
 
 function App() {
   return (
-    <ThemeProvider theme={WhiteLabelConfig.THEME}>
+    <ThemeProvider theme={theme}>
       <SafeAreaProvider>
         <Login />
       </SafeAreaProvider>
