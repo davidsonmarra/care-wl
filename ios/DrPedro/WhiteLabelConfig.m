@@ -25,7 +25,7 @@
           @"secondary": @"#ffffff",
           @"disabled": @"#037fff55",
           @"text": @"#303030",
-          @"heroTitle": @"#f1f1f1",
+          @"error": @"#df1f1f",
           @"brightness": @"rgba(0, 0, 0, 0.5)",
           @"cardBackground": @"#f1f1f111",
         },

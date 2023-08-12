@@ -8,6 +8,7 @@ module.exports = {
       {extensions: ['.js', '.jsx', '.ts', '.tsx']},
     ],
     'react/react-in-jsx-scope': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
   plugins: ['prettier'],
 };

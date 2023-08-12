@@ -8,6 +8,7 @@ declare module 'styled-components/native' {
       secondary: string;
       disabled: string;
       text: string;
+      error: string;
     };
     fonts: {
       primary: {

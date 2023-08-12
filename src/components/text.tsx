@@ -3,13 +3,15 @@ import {TextProps as RNTextProps} from 'react-native';
 import styled from 'styled-components/native';
 
 interface TextProps extends RNTextProps, PropsWithChildren {
-  type: 'h1' | 'h2' | 'btn-primary' | 'btn-secondary';
+  type: 'h1' | 'h2' | 'text' | 'modal-title' | 'btn-primary' | 'btn-secondary';
 }
 
 export function Text({type, children}: TextProps) {
   const textType = {
     h1: <StyledH1>{children}</StyledH1>,
     h2: <StyledH2>{children}</StyledH2>,
+    text: <StyledText>{children}</StyledText>,
+    'modal-title': <StyledModalTitle>{children}</StyledModalTitle>,
     'btn-primary': <StyledButtonPrimary>{children}</StyledButtonPrimary>,
     'btn-secondary': <StyledButtonSecondary>{children}</StyledButtonSecondary>,
   };
@@ -25,6 +27,18 @@ const StyledH1 = styled.Text`
 
 const StyledH2 = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary.semiBold};
+  font-size: ${({theme}) => theme.fonts.size.lg}px;
+  color: ${({theme}) => theme.colors.text};
+`;
+
+const StyledText = styled.Text`
+  font-family: ${({theme}) => theme.fonts.primary.regular};
+  font-size: ${({theme}) => theme.fonts.size.md}px;
+  color: ${({theme}) => theme.colors.text};
+`;
+
+const StyledModalTitle = styled.Text`
+  font-family: ${({theme}) => theme.fonts.primary.bold};
   font-size: ${({theme}) => theme.fonts.size.lg}px;
   color: ${({theme}) => theme.colors.text};
 `;

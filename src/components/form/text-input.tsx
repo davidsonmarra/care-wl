@@ -1,13 +1,23 @@
 import React, {useState} from 'react';
 import {TextInputProps as RNTextInputProps} from 'react-native';
 import styled, {useTheme} from 'styled-components/native';
+import {Control, Controller} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import {ValidationLoginSchemaProps} from '@types';
+
 interface TextInputProps extends RNTextInputProps {
+  control: Control<ValidationLoginSchemaProps>;
+  name: keyof ValidationLoginSchemaProps;
   password?: boolean;
 }
 
-export function TextInput({password = false, ...rest}: TextInputProps) {
+export function TextInput({
+  password = false,
+  control,
+  name,
+  ...rest
+}: TextInputProps) {
   const [showPassword, setShowPassword] = useState(password);
   const {
     colors: {text},
@@ -19,18 +29,34 @@ export function TextInput({password = false, ...rest}: TextInputProps) {
   const handleToggleShowPassword = () => setShowPassword(prev => !prev);
 
   return (
-    <StyledContainer>
-      <StyledInput secureTextEntry={showPassword} {...rest} />
-      {password && (
-        <StyledButton onPress={handleToggleShowPassword}>
-          <Icon
-            name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-            size={lg}
-            color={text}
-          />
-        </StyledButton>
-      )}
-    </StyledContainer>
+    <>
+      <StyledContainer>
+        <Controller
+          control={control}
+          render={({field: {onChange, onBlur, value}}) => (
+            <>
+              <StyledInput
+                secureTextEntry={showPassword}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                {...rest}
+              />
+              {password && (
+                <StyledButton onPress={handleToggleShowPassword}>
+                  <Icon
+                    name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                    size={lg}
+                    color={text}
+                  />
+                </StyledButton>
+              )}
+            </>
+          )}
+          name={name}
+        />
+      </StyledContainer>
+    </>
   );
 }
 
@@ -43,9 +69,12 @@ const StyledContainer = styled.View`
   background-color: ${({theme}) => theme.colors.secondary};
 `;
 
-const StyledInput = styled.TextInput`
+const StyledInput = styled.TextInput.attrs(({theme}) => ({
+  placeholderTextColor: theme.colors.disabled,
+}))`
   flex: 1;
   padding: 12px 16px;
+  color: ${({theme}) => theme.colors.text};
 `;
 
 const StyledButton = styled.TouchableOpacity`
