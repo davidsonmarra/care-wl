@@ -9,6 +9,10 @@ declare module 'styled-components/native' {
       disabled: string;
       text: string;
       error: string;
+      success: string;
+      warning: string;
+      brightness: string;
+      line: string;
     };
     fonts: {
       primary: {

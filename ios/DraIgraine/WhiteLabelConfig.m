@@ -26,8 +26,10 @@
           @"disabled": @"#73272855",
           @"text": @"#303030",
           @"error": @"#df1f1f",
+          @"success": @"#16ab30",
+          @"warning": @"#f3c82e",
           @"brightness": @"rgba(0, 0, 0, 0.5)",
-          @"cardBackground": @"#f1f1f111",
+          @"line": @"#808080",
         },
         @"mode": @"light"
       }

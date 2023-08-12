@@ -31,7 +31,7 @@ export function Login() {
     console.log(email, password);
     setIsLoading(true);
     try {
-      const {data} = await api.post('/login');
+      const {data} = await api.post('/login', {email, password});
       console.log(data);
     } catch (error) {
       setError('password', {message: 'E-mail ou senha incorretos'});

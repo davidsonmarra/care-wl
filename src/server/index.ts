@@ -12,8 +12,13 @@ export function makeServer({environment = 'development'} = {}) {
 
       this.post(
         'login',
-        () => {
-          return 'LOGOU';
+        (_, req) => {
+          const {email, password} = JSON.parse(req.requestBody);
+          if (email === 'davidsonmarra@gmail.com' && password === 'Senha@123') {
+            return 'LOGOU';
+          } else {
+            throw new Error('Usuário ou senha inválidos');
+          }
         },
         {timing: 4000},
       );

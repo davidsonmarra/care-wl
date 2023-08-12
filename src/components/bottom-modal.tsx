@@ -6,9 +6,12 @@ import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
+  interpolateColor,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 
 import {BottomModalRefProps} from '@types';
@@ -29,6 +32,8 @@ export const BottomModal = forwardRef<BottomModalRefProps, BottomModalProps>(
     const {colors} = useTheme();
 
     const translateY = useSharedValue(0);
+    const translateYWrapper = useSharedValue(0);
+    const opacity = useSharedValue(0);
     const context = useSharedValue({y: 0});
     const active = useSharedValue(false);
 
@@ -36,11 +41,13 @@ export const BottomModal = forwardRef<BottomModalRefProps, BottomModalProps>(
       'worklet';
       if (destination === 0) {
         active.value = false;
+        translateYWrapper.value = withDelay(500, withTiming(0));
       } else {
         active.value = true;
+        translateYWrapper.value = SCREEN_HEIGHT;
       }
       active.value = destination !== 0;
-
+      opacity.value = withTiming(destination === 0 ? 0 : 1, {duration: 500});
       translateY.value = withSpring(destination, {
         damping: 50,
       });
@@ -75,7 +82,7 @@ export const BottomModal = forwardRef<BottomModalRefProps, BottomModalProps>(
         }
       });
 
-    const rBottomSheetStyle = useAnimatedStyle(() => {
+    const bottomModalStyle = useAnimatedStyle(() => {
       const borderRadius = interpolate(
         translateY.value,
         [MAX_TRANSLATE_X + 50, MAX_TRANSLATE_X],
@@ -88,22 +95,47 @@ export const BottomModal = forwardRef<BottomModalRefProps, BottomModalProps>(
       };
     });
 
+    const bottomModalWrapperContainerStyle = useAnimatedStyle(() => {
+      return {
+        transform: [{translateY: -translateYWrapper.value}],
+        backgroundColor: interpolateColor(
+          opacity.value,
+          [0, 1],
+          ['transparent', colors.brightness],
+        ),
+      };
+    });
+
     return (
-      <GestureDetector gesture={gesture}>
-        <StyledContainer style={[rBottomSheetStyle]}>
-          <StyledLine />
-          <StyledTitleContainer>
-            <Icon name="report-gmailerrorred" size={56} color={colors.error} />
-            <StyledDivider value={8} />
-            <Text type="modal-title">{title}</Text>
-          </StyledTitleContainer>
-          <StyledDivider value={12} />
-          {children}
-        </StyledContainer>
-      </GestureDetector>
+      <StyledWrapper style={[bottomModalWrapperContainerStyle]}>
+        <GestureDetector gesture={gesture}>
+          <StyledContainer style={[bottomModalStyle]}>
+            <StyledLine />
+            <StyledTitleContainer>
+              <Icon
+                name="report-gmailerrorred"
+                size={56}
+                color={colors.error}
+              />
+              <StyledDivider value={8} />
+              <Text type="modal-title">{title}</Text>
+            </StyledTitleContainer>
+            <StyledDivider value={12} />
+            {children}
+          </StyledContainer>
+        </GestureDetector>
+      </StyledWrapper>
     );
   },
 );
+
+const StyledWrapper = styled(AnimatedView)`
+  height: ${SCREEN_HEIGHT}px;
+  top: ${SCREEN_HEIGHT}px;
+  width: 100%;
+  position: absolute;
+  align-items: center;
+`;
 
 const StyledContainer = styled(AnimatedView)`
   height: ${SCREEN_HEIGHT}px;
@@ -117,7 +149,7 @@ const StyledContainer = styled(AnimatedView)`
 const StyledLine = styled.View`
   width: 75px;
   height: 4px;
-  background-color: grey;
+  background-color: ${({theme}) => theme.colors.line};
   align-self: center;
   margin: 15px 0;
   border-radius: 2px;
