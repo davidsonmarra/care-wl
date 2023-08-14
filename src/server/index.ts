@@ -1,4 +1,4 @@
-import {Server, Model} from 'miragejs';
+import {Server, Model, Response} from 'miragejs';
 import {BASE_URL, VERSION} from '@helpers';
 
 export function makeServer({environment = 'development'} = {}) {
@@ -14,8 +14,18 @@ export function makeServer({environment = 'development'} = {}) {
         'login',
         (_, req) => {
           const {email, password} = JSON.parse(req.requestBody);
+
           if (email === 'davidsonmarra@gmail.com' && password === 'Senha@123') {
-            return 'LOGOU';
+            return new Response(
+              200,
+              {
+                authorization: 'Bearer token',
+                'refresh-token': 'refresh-token',
+              },
+              {
+                id: '1',
+              },
+            );
           } else {
             throw new Error('Usuário ou senha inválidos');
           }

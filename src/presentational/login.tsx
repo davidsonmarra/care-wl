@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useEffect, useRef, useCallback} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled, {useTheme} from 'styled-components/native';
 import {useForm} from 'react-hook-form';
@@ -7,12 +7,19 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {logoImg} from '@assets';
 import {Button, BottomModal, Text, Input} from '@components';
 import {validateSchemaLogin} from '@helpers';
-import {api} from '@global';
 import {BottomModalRefProps, ValidationLoginSchemaProps} from '@types';
+import {useDispatch, useSelector} from 'react-redux';
+import {actions, RootStateProps} from '@store';
+
+const {LOGIN} = actions;
 
 export function Login() {
-  const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<BottomModalRefProps>(null);
+  const dispatch = useDispatch();
+  const {isLoading, error} = useSelector(
+    ({profile}: RootStateProps) => profile,
+  );
+
   const {
     fonts: {size},
   } = useTheme();
@@ -27,18 +34,8 @@ export function Login() {
     reValidateMode: 'onSubmit',
   });
 
-  const handleLogin = async ({email, password}: ValidationLoginSchemaProps) => {
-    console.log(email, password);
-    setIsLoading(true);
-    try {
-      const {data} = await api.post('/login', {email, password});
-      console.log(data);
-    } catch (error) {
-      setError('password', {message: 'E-mail ou senha incorretos'});
-      handleToggleModal();
-    } finally {
-      setIsLoading(false);
-    }
+  const handleLogin = async (formData: ValidationLoginSchemaProps) => {
+    dispatch(LOGIN(formData));
   };
 
   const handleToggleModal = useCallback(() => {
@@ -49,8 +46,11 @@ export function Login() {
   useEffect(() => {
     if (errors.email || errors.password) {
       handleToggleModal();
+    } else if (error?.message) {
+      setError('password', {message: 'E-mail ou senha incorretos'});
+      handleToggleModal();
     }
-  }, [errors]);
+  }, [errors, error]);
 
   return (
     <>

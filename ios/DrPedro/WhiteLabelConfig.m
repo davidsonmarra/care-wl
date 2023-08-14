@@ -28,6 +28,7 @@
           @"error": @"#df1f1f",
           @"success": @"#16ab30",
           @"warning": @"#f3c82e",
+          @"brightness": @"rgba(0, 0, 0, 0.5)",
           @"line": @"#808080",
         },
         @"mode": @"light"

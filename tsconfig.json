@@ -12,6 +12,7 @@
       "@modules": ["./src/modules"],
       "@presentational": ["./src/presentational"],
       "@server": ["./src/server"],
+      "@store": ["./src/store"],
       "@types": ["./src/types"]
     },
     "strict": true
