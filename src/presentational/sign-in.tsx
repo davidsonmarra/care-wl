@@ -6,6 +6,7 @@ import {logoImg} from '@assets';
 import {Button, BottomModal, Text, Input} from '@components';
 import {Control, FieldErrors} from 'react-hook-form';
 import {BottomModalRefProps, ValidationLoginSchemaProps} from '@types';
+import {AxiosError} from 'axios';
 
 interface SignInProps {
   control: Control<ValidationLoginSchemaProps>;
@@ -14,6 +15,7 @@ interface SignInProps {
   isLoading: boolean;
   modalRef: RefObject<BottomModalRefProps>;
   errors: FieldErrors<ValidationLoginSchemaProps>;
+  apiError: AxiosError<any>;
 }
 
 export function SignIn({
@@ -23,6 +25,7 @@ export function SignIn({
   isLoading,
   modalRef,
   errors,
+  apiError,
 }: SignInProps) {
   const {
     fonts: {size},
@@ -77,7 +80,9 @@ export function SignIn({
         icon="report-gmailerrorred"
         ref={modalRef}>
         <Text type="text">
-          {errors.email?.message || errors.password?.message}
+          {errors.email?.message ||
+            errors.password?.message ||
+            apiError?.response?.data?.message}
         </Text>
         <Button type="secondary" onPress={handleToggleModal}>
           <StyledDivider value={8} />

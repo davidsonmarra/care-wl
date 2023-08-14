@@ -5,8 +5,8 @@ import {AxiosError} from 'axios';
 interface InitialStateProps {
   email: string;
   token: string;
-  error: Error | AxiosError;
-  errorOnStart: Error | AxiosError;
+  error: AxiosError<any>;
+  errorOnStart: AxiosError;
   isLogged: boolean;
   isLoading: boolean;
 }
@@ -14,8 +14,8 @@ interface InitialStateProps {
 const initialState: InitialStateProps = {
   email: '',
   token: '',
-  error: {} as Error | AxiosError,
-  errorOnStart: {} as Error | AxiosError,
+  error: {} as AxiosError,
+  errorOnStart: {} as AxiosError,
   isLogged: false,
   isLoading: false,
 };
@@ -24,10 +24,17 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    LOGIN: (state, {payload}: PayloadAction<ValidationLoginSchemaProps>) => ({
+    LOGIN: (
+      state,
+      {
+        payload,
+      }: PayloadAction<
+        ValidationLoginSchemaProps & {onCallbackPress: () => void}
+      >,
+    ) => ({
       ...state,
       email: payload.email,
-      error: {} as Error | AxiosError,
+      error: {} as AxiosError,
       isLoading: true,
     }),
     LOGIN_ON_START: state => ({
@@ -39,15 +46,12 @@ const profileSlice = createSlice({
       isLogged: true,
       isLoading: false,
     }),
-    LOGIN_FAILURE: (state, {payload}: PayloadAction<Error | AxiosError>) => ({
+    LOGIN_FAILURE: (state, {payload}: PayloadAction<AxiosError>) => ({
       ...state,
       error: payload,
       isLoading: false,
     }),
-    LOGIN_FAILURE_ON_START: (
-      state,
-      {payload}: PayloadAction<Error | AxiosError>,
-    ) => ({
+    LOGIN_FAILURE_ON_START: (state, {payload}: PayloadAction<AxiosError>) => ({
       ...state,
       errorOnStart: payload,
       isLoading: false,

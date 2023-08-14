@@ -27,7 +27,13 @@ export function makeServer({environment = 'development'} = {}) {
               },
             );
           } else {
-            throw new Error('Usuário ou senha inválidos');
+            return new Response(
+              401,
+              {},
+              {
+                message: 'Usuário ou senha inválidos',
+              },
+            );
           }
         },
         {timing: 4000},

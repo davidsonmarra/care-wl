@@ -10,3 +10,8 @@ export interface TokenProps {
   id: string;
   refresh: string;
 }
+
+export type {
+  PublicRootStackParamList,
+  AuthRootStackParamList,
+} from './navigation';

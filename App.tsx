@@ -15,7 +15,7 @@ import {theme} from '@global';
 import {makeServer} from '@server';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {store} from '@store';
-import {SignInScreen} from '@screens';
+import {Routes} from '@routes';
 
 if (window.server) {
   server.shutdown();
@@ -29,7 +29,7 @@ function App() {
       <GestureHandlerRootView style={{flex: 1}}>
         <Provider store={store}>
           <SafeAreaProvider>
-            <SignInScreen />
+            <Routes />
           </SafeAreaProvider>
         </Provider>
       </GestureHandlerRootView>

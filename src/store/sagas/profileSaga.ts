@@ -25,7 +25,9 @@ const requestSignIn = async (email: string, password: string) =>
     })
     .then(response => response);
 
-function* login({payload: {email, password}}: ReturnType<typeof LOGIN>) {
+function* login({
+  payload: {email, password, onCallbackPress},
+}: ReturnType<typeof LOGIN>) {
   try {
     const {data, headers} = yield requestSignIn(email, password);
     yield put(
@@ -37,8 +39,10 @@ function* login({payload: {email, password}}: ReturnType<typeof LOGIN>) {
     );
     yield put(LOGIN_SUCCESS(headers.authorization));
   } catch (error) {
-    if (error instanceof AxiosError || error instanceof Error)
+    if (error instanceof AxiosError) {
       yield put(LOGIN_FAILURE(error));
+      onCallbackPress();
+    }
   }
 }
 
@@ -91,8 +95,7 @@ export function* loginOnStart() {
       );
       yield put(LOGIN_SUCCESS(headers.authorization));
     } catch (error) {
-      if (error instanceof AxiosError || error instanceof Error)
-        yield put(LOGIN_FAILURE_ON_START(error));
+      if (error instanceof AxiosError) yield put(LOGIN_FAILURE_ON_START(error));
     }
   }
 }

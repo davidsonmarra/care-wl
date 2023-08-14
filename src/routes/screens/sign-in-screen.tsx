@@ -20,7 +20,6 @@ export function SignInScreen() {
     control,
     handleSubmit,
     formState: {errors},
-    setError,
   } = useForm<ValidationLoginSchemaProps>({
     resolver: yupResolver(validateSchemaLogin),
     mode: 'onSubmit',
@@ -28,7 +27,7 @@ export function SignInScreen() {
   });
 
   const handleLogin = async (formData: ValidationLoginSchemaProps) => {
-    dispatch(LOGIN(formData));
+    dispatch(LOGIN({...formData, onCallbackPress: handleToggleModal}));
   };
 
   const handleToggleModal = useCallback(() => {
@@ -39,11 +38,8 @@ export function SignInScreen() {
   useEffect(() => {
     if (errors.email || errors.password) {
       handleToggleModal();
-    } else if (error?.message) {
-      setError('password', {message: 'E-mail ou senha incorretos'});
-      handleToggleModal();
     }
-  }, [errors, error]);
+  }, [errors]);
 
   return (
     <SignIn
@@ -53,6 +49,7 @@ export function SignInScreen() {
       isLoading={isLoading}
       modalRef={modalRef}
       errors={errors}
+      apiError={error}
     />
   );
 }
