@@ -1,56 +1,32 @@
-import React, {useEffect, useRef, useCallback} from 'react';
+import React, {RefObject} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled, {useTheme} from 'styled-components/native';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
 
 import {logoImg} from '@assets';
 import {Button, BottomModal, Text, Input} from '@components';
-import {validateSchemaLogin} from '@helpers';
+import {Control, FieldErrors} from 'react-hook-form';
 import {BottomModalRefProps, ValidationLoginSchemaProps} from '@types';
-import {useDispatch, useSelector} from 'react-redux';
-import {actions, RootStateProps} from '@store';
 
-const {LOGIN} = actions;
+interface SignInProps {
+  control: Control<ValidationLoginSchemaProps>;
+  handleSubmit: () => void;
+  handleToggleModal: () => void;
+  isLoading: boolean;
+  modalRef: RefObject<BottomModalRefProps>;
+  errors: FieldErrors<ValidationLoginSchemaProps>;
+}
 
-export function Login() {
-  const modalRef = useRef<BottomModalRefProps>(null);
-  const dispatch = useDispatch();
-  const {isLoading, error} = useSelector(
-    ({profile}: RootStateProps) => profile,
-  );
-
+export function SignIn({
+  control,
+  handleSubmit,
+  handleToggleModal,
+  isLoading,
+  modalRef,
+  errors,
+}: SignInProps) {
   const {
     fonts: {size},
   } = useTheme();
-  const {
-    control,
-    handleSubmit,
-    formState: {errors},
-    setError,
-  } = useForm<ValidationLoginSchemaProps>({
-    resolver: yupResolver(validateSchemaLogin),
-    mode: 'onSubmit',
-    reValidateMode: 'onSubmit',
-  });
-
-  const handleLogin = async (formData: ValidationLoginSchemaProps) => {
-    dispatch(LOGIN(formData));
-  };
-
-  const handleToggleModal = useCallback(() => {
-    const isActive = modalRef.current?.isActive();
-    isActive ? modalRef.current?.scrollTo(0) : modalRef.current?.scrollTo(-250);
-  }, []);
-
-  useEffect(() => {
-    if (errors.email || errors.password) {
-      handleToggleModal();
-    } else if (error?.message) {
-      setError('password', {message: 'E-mail ou senha incorretos'});
-      handleToggleModal();
-    }
-  }, [errors, error]);
 
   return (
     <>
@@ -88,10 +64,7 @@ export function Login() {
           </StyledSection>
         </StyledContent>
         <StyledButtonContainer>
-          <Button
-            type="primary"
-            onPress={handleSubmit(handleLogin)}
-            isLoading={isLoading}>
+          <Button type="primary" onPress={handleSubmit} isLoading={isLoading}>
             <Text type="btn-primary">Entrar</Text>
           </Button>
           <Button type="secondary">

@@ -12,10 +12,10 @@ import {ThemeProvider} from 'styled-components/native';
 import {Provider} from 'react-redux';
 
 import {theme} from '@global';
-import {Login} from '@presentational';
 import {makeServer} from '@server';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {store} from '@store';
+import {SignInScreen} from '@screens';
 
 if (window.server) {
   server.shutdown();
@@ -29,7 +29,7 @@ function App() {
       <GestureHandlerRootView style={{flex: 1}}>
         <Provider store={store}>
           <SafeAreaProvider>
-            <Login />
+            <SignInScreen />
           </SafeAreaProvider>
         </Provider>
       </GestureHandlerRootView>

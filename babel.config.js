@@ -19,6 +19,7 @@ module.exports = function (api) {
             '@helpers': './src/helpers',
             '@modules': './src/modules',
             '@presentational': './src/presentational',
+            '@screens': './src/screens',
             '@server': './src/server',
             '@store': './src/store',
             '@types': './src/types',
