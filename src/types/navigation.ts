@@ -4,4 +4,5 @@ export type PublicRootStackParamList = {
 
 export type AuthRootStackParamList = {
   Home: undefined;
+  ScheduleAppointment: undefined;
 };

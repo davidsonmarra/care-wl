@@ -7,5 +7,9 @@ export {
   ASYNC_STORAGE_USER_ID,
   ASYNC_STORAGE_USER_REFRESH,
 } from './constants';
+export {ptBR} from './locale-config';
 export {storage} from './storage';
-export {validateSchemaLogin} from './validate-schema-login';
+export {
+  validateSchemaLogin,
+  validateSchemaScheduleAppointment,
+} from './schemas';

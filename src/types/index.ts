@@ -1,4 +1,7 @@
-export type {ValidationLoginSchemaProps} from './schemas';
+export type {
+  ValidationLoginSchemaProps,
+  ValidationScheduleAppointmentSchemaProps,
+} from './schemas';
 
 export interface BottomModalRefProps {
   scrollTo: (destination: number) => void;
@@ -17,3 +20,5 @@ export type {
 } from './navigation';
 
 export type {UserDTO, DateDTO} from './DTOs';
+
+export type {ScheduleAppointmentStepProps} from './steps';

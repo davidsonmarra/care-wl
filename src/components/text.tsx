@@ -10,7 +10,8 @@ interface TextProps extends RNTextProps, PropsWithChildren {
     | 'modal-title'
     | 'btn-primary'
     | 'btn-secondary'
-    | 'tag';
+    | 'tag'
+    | 'header-form';
   color?: string;
 }
 
@@ -23,6 +24,7 @@ export function Text({type, children, color}: TextProps) {
     'btn-primary': <StyledButtonPrimary>{children}</StyledButtonPrimary>,
     'btn-secondary': <StyledButtonSecondary>{children}</StyledButtonSecondary>,
     tag: <StyledTag color={color}>{children}</StyledTag>,
+    'header-form': <StyledHeaderForm>{children}</StyledHeaderForm>,
   };
 
   return textType[type];
@@ -68,4 +70,10 @@ const StyledTag = styled.Text<{color?: string}>`
   font-family: ${({theme}) => theme.fonts.primary.medium};
   font-size: ${({theme}) => theme.fonts.size.sm}px;
   color: ${({theme, color}) => color || theme.colors.text};
+`;
+
+const StyledHeaderForm = styled.Text`
+  font-family: ${({theme}) => theme.fonts.primary.semiBold};
+  font-size: ${({theme}) => theme.fonts.size.lg}px;
+  color: ${({theme}) => theme.colors.secondary};
 `;

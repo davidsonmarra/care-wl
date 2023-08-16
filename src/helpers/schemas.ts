@@ -8,3 +8,9 @@ export const validateSchemaLogin = Yup.object().shape({
     .min(6, 'Senha deve ter no mínimo 6 caracteres')
     .required('Campo de senha obrigatório'),
 });
+
+export const validateSchemaScheduleAppointment = Yup.object().shape({
+  type: Yup.string().required('Campo de tipo de consulta obrigatório'),
+  date: Yup.string().required('Campo de data obrigatório'),
+  obs: Yup.string(),
+});

@@ -4,7 +4,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
 import {Button, CardDate, Header, Text} from '@components';
-import {DateDTO, UserDTO} from '@types';
+import {AuthRootStackParamList, DateDTO, UserDTO} from '@types';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 interface HomeProps {
   user: UserDTO;
@@ -49,6 +50,13 @@ const date: DateDTO[] = [
 ];
 
 export function Home({user: {name}}: HomeProps) {
+  const {navigate} =
+    useNavigation<NavigationProp<AuthRootStackParamList, 'Home'>>();
+
+  const handleScheduleAppointment = () => {
+    navigate('ScheduleAppointment');
+  };
+
   return (
     <>
       <Header name={name} />
@@ -60,7 +68,7 @@ export function Home({user: {name}}: HomeProps) {
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={itemSeparator}
         />
-        <StyledButton type="primary">
+        <StyledButton type="primary" onPress={handleScheduleAppointment}>
           <StyledIcon name="calendar-plus" />
           <Text type="btn-primary">Agendar</Text>
         </StyledButton>
