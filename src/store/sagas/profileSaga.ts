@@ -15,6 +15,8 @@ import {
   LOGIN_FAILURE_ON_START,
   SET_AUTHORIZATIONS,
   LOGOUT,
+  GET_USER_INFO_SUCCESS,
+  GET_USER_INFO,
 } from '../slices/profileSlice';
 
 const requestSignIn = async (email: string, password: string) =>
@@ -100,11 +102,22 @@ export function* loginOnStart() {
   }
 }
 
+export function* getUserInfo() {
+  try {
+    const {data} = yield call(api.get, '/user');
+    console.log('Dados do usuário:', data);
+    yield put(GET_USER_INFO_SUCCESS(data));
+  } catch (error) {
+    console.log('Erro ao obter dados do usuário:', error);
+  }
+}
+
 export default function* watcher() {
   yield all([
     takeLatest(LOGIN, login),
     takeLatest(LOGIN_ON_START, loginOnStart),
     takeLatest(SET_AUTHORIZATIONS, setAuthorizations),
     takeLatest(LOGOUT, clearUserData),
+    takeLatest(GET_USER_INFO, getUserInfo),
   ]);
 }

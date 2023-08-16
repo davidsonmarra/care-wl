@@ -15,3 +15,5 @@ export type {
   PublicRootStackParamList,
   AuthRootStackParamList,
 } from './navigation';
+
+export type {UserDTO, DateDTO} from './DTOs';

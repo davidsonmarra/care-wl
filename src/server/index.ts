@@ -38,6 +38,21 @@ export function makeServer({environment = 'development'} = {}) {
         },
         {timing: 4000},
       );
+
+      this.get(
+        'user',
+        () => {
+          return new Response(
+            200,
+            {},
+            {
+              name: 'Davidson Marra',
+              role: 'patient',
+            },
+          );
+        },
+        {timing: 1000},
+      );
     },
   });
   return server;

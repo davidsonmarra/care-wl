@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ValidationLoginSchemaProps, TokenProps} from '@types';
+import {ValidationLoginSchemaProps, TokenProps, UserDTO} from '@types';
 import {AxiosError} from 'axios';
 
 interface InitialStateProps {
@@ -9,6 +9,7 @@ interface InitialStateProps {
   errorOnStart: AxiosError;
   isLogged: boolean;
   isLoading: boolean;
+  user: UserDTO;
 }
 
 const initialState: InitialStateProps = {
@@ -18,6 +19,7 @@ const initialState: InitialStateProps = {
   errorOnStart: {} as AxiosError,
   isLogged: false,
   isLoading: false,
+  user: {} as UserDTO,
 };
 
 const profileSlice = createSlice({
@@ -67,6 +69,15 @@ const profileSlice = createSlice({
       token: '',
       isLogged: false,
     }),
+    GET_USER_INFO: state => ({
+      ...state,
+      isLoading: true,
+    }),
+    GET_USER_INFO_SUCCESS: (state, {payload}: PayloadAction<UserDTO>) => ({
+      ...state,
+      user: payload,
+      isLoading: false,
+    }),
   },
 });
 
@@ -80,5 +91,7 @@ export const {
   LOGIN_FAILURE_ON_START,
   SET_AUTHORIZATIONS,
   LOGOUT,
+  GET_USER_INFO,
+  GET_USER_INFO_SUCCESS,
 } = actions;
 export default reducer;

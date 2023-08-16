@@ -1,3 +1,4 @@
+export {getCategory} from './colors';
 export {
   BASE_URL,
   VERSION,
