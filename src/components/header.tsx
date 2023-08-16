@@ -24,7 +24,7 @@ export function Header({name = ''}: HeaderProps) {
 }
 
 const StyledContainer = styled.View<{topInset: number}>`
-  padding: ${({topInset}) => `${topInset + 16}px 24px 16px`};
+  padding: ${({topInset}) => `${topInset + 16}px 24px 8px`};
   background-color: ${({theme}) => theme.colors.background};
   flex-direction: row;
   align-items: center;

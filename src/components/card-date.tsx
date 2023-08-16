@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styled from 'styled-components/native';
 import {format} from 'date-fns';
 import {Tag} from './tag';
@@ -10,7 +10,7 @@ interface CardDateProps {
   date: DateDTO;
 }
 
-export function CardDate({
+function CardDateComponent({
   date: {tag = 'first', doctor, type, date},
 }: CardDateProps) {
   const {colorBackground, colorText, text: textTag} = getCategory[tag];
@@ -59,7 +59,7 @@ const StyledDateContainer = styled.View`
 `;
 
 const StyledDay = styled.Text`
-  font-size: 32px;
+  font-size: ${({theme}) => theme.fonts.size.xxxl}px;
   font-family: ${({theme}) => theme.fonts.primary.bold};
   color: ${({theme}) => theme.colors.secondary};
 `;
@@ -76,14 +76,14 @@ const StyledDivider = styled.View`
 `;
 
 const StyledHour = styled.Text`
-  font-size: 16px;
+  margin: 0 4px;
+  font-size: ${({theme}) => theme.fonts.size.lg}px;
   font-family: ${({theme}) => theme.fonts.primary.medium};
   color: ${({theme}) => theme.colors.secondary};
-  margin: 0 4px;
 `;
 
 const StyledMonth = styled.Text`
-  font-size: 20px;
+  font-size: ${({theme}) => theme.fonts.size.xxl}px;
   font-family: ${({theme}) => theme.fonts.primary.semiBold};
   color: ${({theme}) => theme.colors.secondary};
 `;
@@ -92,3 +92,7 @@ const StyledInfoContainer = styled.View`
   justify-content: space-between;
   align-items: flex-end;
 `;
+
+export const CardDate = memo(CardDateComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.date, nextProps.date);
+});

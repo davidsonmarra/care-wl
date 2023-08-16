@@ -15,6 +15,8 @@ export const theme = {
       md: 14,
       lg: 16,
       xl: 18,
+      xxl: 20,
+      xxxl: 32,
     },
   },
 };
