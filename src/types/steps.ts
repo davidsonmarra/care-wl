@@ -1,8 +1,9 @@
+import {TextInputProps} from 'react-native';
 import {ValidationScheduleAppointmentSchemaProps} from './schemas';
 
-export interface ScheduleAppointmentStepProps {
+export interface ScheduleAppointmentStepProps extends TextInputProps {
   title: string;
   description: string;
   field: keyof ValidationScheduleAppointmentSchemaProps;
-  type: 'date' | 'select';
+  type: 'date' | 'select' | 'text';
 }

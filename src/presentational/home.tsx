@@ -78,6 +78,7 @@ export function Home({user: {name}}: HomeProps) {
 }
 
 const renderItem: ListRenderItem<DateDTO> = ({item}: {item: DateDTO}) => (
+  // @ts-ignore
   <CardDate date={item} />
 );
 

@@ -53,6 +53,22 @@ export function makeServer({environment = 'development'} = {}) {
         },
         {timing: 1000},
       );
+
+      this.get(
+        'hours/:date',
+        () => {
+          return new Response(200, {}, [
+            '8:00',
+            '9:00',
+            '10:00',
+            '11:00',
+            '12:00',
+            '13:00',
+            '14:00',
+          ]);
+        },
+        {timing: 1000},
+      );
     },
   });
   return server;

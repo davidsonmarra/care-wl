@@ -13,3 +13,4 @@ export {
   validateSchemaLogin,
   validateSchemaScheduleAppointment,
 } from './schemas';
+export {SCHEDULE_APPOINTMENT_STEPS} from './steps';

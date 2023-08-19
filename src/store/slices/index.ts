@@ -1,7 +1,8 @@
 import {combineReducers} from '@reduxjs/toolkit';
 
-import profile, * as actions from './profileSlice';
+import profile, * as actionsProfile from './profileSlice';
+import scheduleAppointment, * as actionsScheduleAppointment from './scheduleAppointmentSlice';
 
-export default combineReducers({profile});
+export default combineReducers({profile, scheduleAppointment});
 
-export {actions};
+export {actionsProfile, actionsScheduleAppointment};

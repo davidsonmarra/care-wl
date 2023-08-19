@@ -10,7 +10,7 @@ export const validateSchemaLogin = Yup.object().shape({
 });
 
 export const validateSchemaScheduleAppointment = Yup.object().shape({
+  obs: Yup.string(),
   type: Yup.string().required('Campo de tipo de consulta obrigatório'),
   date: Yup.string().required('Campo de data obrigatório'),
-  obs: Yup.string(),
 });

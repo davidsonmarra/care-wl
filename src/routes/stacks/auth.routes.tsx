@@ -3,11 +3,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useDispatch} from 'react-redux';
 import {HomeScreen, ScheduleAppointmentScreen} from '../screens';
 import {AuthRootStackParamList} from '@types';
-import {actions} from '@store';
+import {actionsProfile} from '@store';
 
 const {Screen, Navigator} =
   createNativeStackNavigator<AuthRootStackParamList>();
-const {GET_USER_INFO} = actions;
+const {GET_USER_INFO} = actionsProfile;
 
 export function AuthRoutes() {
   const dispatch = useDispatch();

@@ -16,4 +16,4 @@ sagaMiddleware.run(sagas);
 
 export type RootStateProps = ReturnType<typeof reducers>;
 
-export {actions} from './slices';
+export {actionsProfile, actionsScheduleAppointment} from './slices';

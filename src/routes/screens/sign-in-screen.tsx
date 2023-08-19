@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {SignIn} from '@presentational';
-import {actions, RootStateProps} from '@store';
+import {actionsProfile, RootStateProps} from '@store';
 import {validateSchemaLogin} from '@helpers';
 import {BottomModalRefProps, ValidationLoginSchemaProps} from '@types';
 
-const {LOGIN} = actions;
+const {LOGIN} = actionsProfile;
 
 export function SignInScreen() {
   const modalRef = useRef<BottomModalRefProps>(null);
