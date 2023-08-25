@@ -8,13 +8,20 @@ import {ptBR} from '../../helpers';
 import {useDispatch, useSelector} from 'react-redux';
 import {Text} from '../text';
 import {Button} from '../button';
+import {ValidationScheduleAppointmentSchemaProps} from '@types';
 
 LocaleConfig.locales['pt-br'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-br';
 
 const {GET_HOURS} = actionsScheduleAppointment;
 
-export const Calendar = () => {
+interface CalendarProps {
+  setValue: (
+    name: keyof ValidationScheduleAppointmentSchemaProps,
+    value: string,
+  ) => void;
+}
+export const Calendar = ({setValue}: CalendarProps) => {
   const [selectedHour, setSelectedHour] = useState('');
 
   const {
@@ -31,6 +38,10 @@ export const Calendar = () => {
   useEffect(() => {
     setSelectedHour('');
   }, [date]);
+
+  useEffect(() => {
+    selectedHour && setValue('date', `${date}|${selectedHour}}`);
+  }, [selectedHour]);
 
   return (
     <Container>

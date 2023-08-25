@@ -2,10 +2,18 @@ import {ScheduleAppointmentStepProps} from '@types';
 
 export const SCHEDULE_APPOINTMENT_STEPS: ScheduleAppointmentStepProps[] = [
   {
+    title: 'Tipo',
+    description: 'Selecione o tipo de agendamento',
+    field: 'type',
+    type: 'select',
+    required: true,
+  },
+  {
     title: 'Data',
     description: 'Selecione a data do agendamento',
     field: 'date',
     type: 'date',
+    required: true,
   },
   {
     title: 'Observação',
@@ -16,11 +24,6 @@ export const SCHEDULE_APPOINTMENT_STEPS: ScheduleAppointmentStepProps[] = [
     multiline: true,
     numberOfLines: 4,
     style: {height: 250},
-  },
-  {
-    title: 'Tipo',
-    description: 'Selecione o tipo de agendamento',
-    field: 'type',
-    type: 'select',
+    required: false,
   },
 ];

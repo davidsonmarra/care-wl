@@ -10,3 +10,8 @@ export interface DateDTO {
   tag: 'first' | 'recurrent' | 'scheduled';
   doctor: string;
 }
+
+export interface CategoryDTO {
+  id: string;
+  name: string;
+}

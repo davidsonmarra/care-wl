@@ -6,4 +6,5 @@ export interface ScheduleAppointmentStepProps extends TextInputProps {
   description: string;
   field: keyof ValidationScheduleAppointmentSchemaProps;
   type: 'date' | 'select' | 'text';
+  required: boolean;
 }

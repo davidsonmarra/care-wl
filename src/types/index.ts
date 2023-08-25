@@ -19,6 +19,6 @@ export type {
   AuthRootStackParamList,
 } from './navigation';
 
-export type {UserDTO, DateDTO} from './DTOs';
+export type {UserDTO, DateDTO, CategoryDTO} from './DTOs';
 
 export type {ScheduleAppointmentStepProps} from './steps';

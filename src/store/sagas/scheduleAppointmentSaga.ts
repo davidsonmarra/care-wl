@@ -1,6 +1,9 @@
 import {all, put, takeLatest} from 'redux-saga/effects';
 import {api} from '@global';
 import {
+  GET_CATEGORIES,
+  GET_CATEGORIES_FAILURE,
+  GET_CATEGORIES_SUCCESS,
   GET_HOURS,
   GET_HOURS_FAILURE,
   GET_HOURS_SUCCESS,
@@ -12,8 +15,8 @@ const requestHours = async (date: string) =>
 
 function* getHours({payload}: ReturnType<typeof GET_HOURS>) {
   const {data} = yield requestHours(payload);
-  yield put(GET_HOURS_SUCCESS(data));
   try {
+    yield put(GET_HOURS_SUCCESS(data));
   } catch (error) {
     if (error instanceof AxiosError) {
       yield put(GET_HOURS_FAILURE(error));
@@ -21,6 +24,24 @@ function* getHours({payload}: ReturnType<typeof GET_HOURS>) {
   }
 }
 
+const requestCategories = async () =>
+  api.get(`/categories`).then(response => response);
+
+function* getCategories() {
+  const {data} = yield requestCategories();
+
+  try {
+    yield put(GET_CATEGORIES_SUCCESS(data));
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      yield put(GET_CATEGORIES_FAILURE(error));
+    }
+  }
+}
+
 export default function* watcher() {
-  yield all([takeLatest(GET_HOURS, getHours)]);
+  yield all([
+    takeLatest(GET_HOURS, getHours),
+    takeLatest(GET_CATEGORIES, getCategories),
+  ]);
 }

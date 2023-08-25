@@ -1,7 +1,8 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {FlatList} from 'react-native-gesture-handler';
 import {useForm} from 'react-hook-form';
+import {useDispatch} from 'react-redux';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {ScheduleAppointment} from '@presentational';
@@ -10,6 +11,10 @@ import {
   AuthRootStackParamList,
   ValidationScheduleAppointmentSchemaProps,
 } from '@types';
+import {actionsScheduleAppointment} from '@store';
+import {Alert} from 'react-native';
+
+const {GET_CATEGORIES} = actionsScheduleAppointment;
 
 export function ScheduleAppointmentScreen() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -17,12 +22,14 @@ export function ScheduleAppointmentScreen() {
 
   const {bottom} = useSafeAreaInsets();
   const {goBack} = useNavigation<NavigationProp<AuthRootStackParamList>>();
-  const {control, handleSubmit} =
-    useForm<ValidationScheduleAppointmentSchemaProps>();
+  const {control, handleSubmit, setValue} =
+    useForm<ValidationScheduleAppointmentSchemaProps>({});
+
+  const dispatch = useDispatch();
 
   const onSubmit = () => {
     if (currentStep === STEPS.length - 1) {
-      handleSubmit(console.log)();
+      handleSubmit(handleNavigateToSuccessScreen)();
     } else {
       scrollToNextStep();
       setCurrentStep(currentStep + 1);
@@ -51,6 +58,14 @@ export function ScheduleAppointmentScreen() {
     return true;
   };
 
+  const handleNavigateToSuccessScreen = () => {
+    Alert.alert('Agendamento realizado com sucesso!');
+  };
+
+  useEffect(() => {
+    dispatch(GET_CATEGORIES());
+  }, []);
+
   return (
     <ScheduleAppointment
       listRef={listRef}
@@ -61,6 +76,7 @@ export function ScheduleAppointmentScreen() {
       }
       onSubmit={onSubmit}
       control={control}
+      setValue={setValue}
       STEPS={STEPS}
     />
   );

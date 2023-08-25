@@ -69,6 +69,13 @@ export function makeServer({environment = 'development'} = {}) {
         },
         {timing: 1000},
       );
+
+      this.get('categories', () => {
+        return new Response(200, {}, [
+          {id: '1', name: 'Limpeza'},
+          {id: '2', name: 'Exame'},
+        ]);
+      });
     },
   });
   return server;

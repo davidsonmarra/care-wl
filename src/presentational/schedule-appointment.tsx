@@ -1,8 +1,8 @@
-import React, {RefObject} from 'react';
+import React, {RefObject, useEffect, useState} from 'react';
 import {Dimensions, FlatList, FlatListProps} from 'react-native';
 import styled from 'styled-components/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Control} from 'react-hook-form';
+import {Control, useWatch} from 'react-hook-form';
 import {Button, Field, HeaderForm, Text} from '@components';
 import {
   ScheduleAppointmentStepProps,
@@ -15,6 +15,10 @@ interface ScheduleAppointmentProps {
   onPressBack: () => void;
   onSubmit: () => void;
   control: Control<ValidationScheduleAppointmentSchemaProps>;
+  setValue: (
+    name: keyof ValidationScheduleAppointmentSchemaProps,
+    value: string,
+  ) => void;
   STEPS: ScheduleAppointmentStepProps[];
 }
 
@@ -23,11 +27,22 @@ const {width} = Dimensions.get('window');
 export function ScheduleAppointment({
   listRef,
   bottomInset = 0,
+  currentStep,
   onPressBack,
   onSubmit,
   control,
+  setValue,
   STEPS,
 }: ScheduleAppointmentProps) {
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const fieldValue = useWatch({
+    control,
+  });
+
+  useEffect(() => {
+    setButtonDisabled(!fieldValue[STEPS[currentStep].field]);
+  }, [fieldValue, currentStep]);
+
   return (
     <StyledContainer edges={['bottom', 'left', 'right']}>
       <HeaderForm leftIcon="chevron-left" handlePressLeftIcon={onPressBack} />
@@ -36,7 +51,7 @@ export function ScheduleAppointment({
           data={STEPS}
           keyExtractor={({field}: ScheduleAppointmentStepProps) => `${field}`}
           renderItem={({item}: {item: ScheduleAppointmentStepProps}) =>
-            renderItem({item}, control)
+            renderItem({item}, control, setValue)
           }
           ref={listRef}
           decelerationRate="fast"
@@ -48,7 +63,10 @@ export function ScheduleAppointment({
         />
       </StyledFormContainer>
       <StyledButtonContainer bottomInset={bottomInset}>
-        <Button type="primary" onPress={onSubmit}>
+        <Button
+          disabled={buttonDisabled && STEPS[currentStep].required}
+          type="primary"
+          onPress={onSubmit}>
           <Text type="btn-primary">Avançar</Text>
         </Button>
       </StyledButtonContainer>
@@ -61,6 +79,10 @@ const renderItem = (
     item: {type, title, description, field, ...rest},
   }: {item: ScheduleAppointmentStepProps},
   control: Control<ValidationScheduleAppointmentSchemaProps>,
+  setValue: (
+    name: keyof ValidationScheduleAppointmentSchemaProps,
+    value: string,
+  ) => void,
 ) => (
   <StyledFieldContainer>
     <Field
@@ -69,6 +91,7 @@ const renderItem = (
       description={description}
       control={control}
       name={field}
+      setValue={setValue}
       {...rest}
     />
   </StyledFieldContainer>

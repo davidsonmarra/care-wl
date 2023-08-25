@@ -5,6 +5,7 @@ import {Text} from '../text';
 import {Calendar} from './calendar';
 import {ValidationScheduleAppointmentSchemaProps} from '@types';
 import {TextInput} from './text-input';
+import {Select} from './select';
 
 interface FieldProps {
   type: 'date' | 'select' | 'text';
@@ -12,11 +13,15 @@ interface FieldProps {
   description: string;
   control: Control<ValidationScheduleAppointmentSchemaProps>;
   name: string;
+  setValue: (
+    name: keyof ValidationScheduleAppointmentSchemaProps,
+    value: string,
+  ) => void;
 }
 
 const inputTypes = (props: any) => ({
   date: <Calendar {...props} />,
-  select: <Calendar {...props} />,
+  select: <Select {...props} />,
   text: <TextInput {...props} />,
 });
 
