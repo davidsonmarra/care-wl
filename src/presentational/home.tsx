@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, FlatListProps, ListRenderItem} from 'react-native';
+import {FlatList, FlatListProps} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
@@ -9,47 +9,53 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 interface HomeProps {
   user: UserDTO;
+  handlePressSchedule: (schedule: DateDTO) => void;
 }
 
 const date: DateDTO[] = [
   {
     id: 1,
-    date: new Date(),
+    date: '2023-11-20',
+    hour: '10:00',
     doctor: 'Dr. Pedro',
     tag: 'scheduled',
     type: 'Limpeza',
   },
   {
     id: 2,
-    date: new Date(),
+    date: '2023-10-21',
+    hour: '10:00',
     doctor: 'Dr. Pedro',
     tag: 'scheduled',
     type: 'Limpeza',
   },
   {
     id: 3,
-    date: new Date(),
+    date: '2023-09-20',
     doctor: 'Dr. Pedro',
+    hour: '10:00',
     tag: 'scheduled',
     type: 'Limpeza',
   },
   {
     id: 4,
-    date: new Date(),
+    date: '2023-08-20',
     doctor: 'Dr. Pedro',
+    hour: '10:00',
     tag: 'scheduled',
     type: 'Limpeza',
   },
   {
     id: 5,
-    date: new Date(),
+    date: '2023-08-20',
+    hour: '10:00',
     doctor: 'Dr. Pedro',
     tag: 'scheduled',
     type: 'Limpeza',
   },
 ];
 
-export function Home({user: {name}}: HomeProps) {
+export function Home({user: {name}, handlePressSchedule}: HomeProps) {
   const {navigate} =
     useNavigation<NavigationProp<AuthRootStackParamList, 'Home'>>();
 
@@ -63,7 +69,9 @@ export function Home({user: {name}}: HomeProps) {
       <StyledContainer edges={['bottom', 'left', 'right']}>
         <StyledList
           data={date}
-          renderItem={renderItem}
+          renderItem={({item}: {item: DateDTO}) =>
+            renderItem({item}, handlePressSchedule)
+          }
           keyExtractor={(item: DateDTO) => `${item.id}`}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={itemSeparator}
@@ -77,10 +85,10 @@ export function Home({user: {name}}: HomeProps) {
   );
 }
 
-const renderItem: ListRenderItem<DateDTO> = ({item}: {item: DateDTO}) => (
-  // @ts-ignore
-  <CardDate date={item} />
-);
+const renderItem = (
+  {item}: {item: DateDTO},
+  handlePressSchedule: (schedule: DateDTO) => void,
+) => <CardDate date={item} onPress={() => handlePressSchedule(item)} />;
 
 const itemSeparator = () => <StyledDivider />;
 

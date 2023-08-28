@@ -5,7 +5,8 @@ export interface UserDTO {
 
 export interface DateDTO {
   id: number;
-  date: Date;
+  date: string;
+  hour: string;
   type: string;
   tag: 'first' | 'recurrent' | 'scheduled';
   doctor: string;

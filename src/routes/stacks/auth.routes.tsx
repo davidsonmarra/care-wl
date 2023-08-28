@@ -1,7 +1,11 @@
 import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useDispatch} from 'react-redux';
-import {HomeScreen, ScheduleAppointmentScreen} from '../screens';
+import {
+  HomeScreen,
+  ScheduleAppointmentScreen,
+  ScheduleDetailsScreen,
+} from '../screens';
 import {AuthRootStackParamList} from '@types';
 import {actionsProfile} from '@store';
 
@@ -27,6 +31,7 @@ export function AuthRoutes() {
         name="ScheduleAppointment"
         component={ScheduleAppointmentScreen}
       />
+      <Screen name="ScheduleDetails" component={ScheduleDetailsScreen} />
     </Navigator>
   );
 }

@@ -1,4 +1,5 @@
 import React, {memo} from 'react';
+import {TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
 import {format} from 'date-fns';
 import {Tag} from './tag';
@@ -6,20 +7,27 @@ import {Text} from './text';
 import {getCategory} from '@helpers';
 import {DateDTO} from '@types';
 
-interface CardDateProps {
+interface CardDateProps extends TouchableOpacityProps {
   date: DateDTO;
 }
 
 function CardDateComponent({
-  date: {tag = 'first', doctor, type, date},
+  date: {tag = 'first', hour, doctor, type, date},
+  onPress,
 }: CardDateProps) {
   const {colorBackground, colorText, text: textTag} = getCategory[tag];
-  const day = format(date, 'dd');
-  const month = format(date, 'MMM');
-  const hour = format(date, 'HH:mm');
+  const parts = date.split('-');
+  const formattedDate = new Date(
+    Number(parts[0]),
+    Number(parts[1]),
+    Number(parts[2]),
+  );
+
+  const day = format(formattedDate, 'dd');
+  const month = format(formattedDate, 'MMM');
 
   return (
-    <StyledContainer>
+    <StyledContainer onPress={onPress}>
       <StyledDateContainer>
         <StyledDay>{day}</StyledDay>
         <StyledHourContainer>
@@ -42,7 +50,7 @@ function CardDateComponent({
   );
 }
 
-const StyledContainer = styled.View`
+const StyledContainer = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
