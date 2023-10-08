@@ -11,7 +11,7 @@ interface TextProps extends RNTextProps, PropsWithChildren {
     | 'btn-primary'
     | 'btn-secondary'
     | 'tag'
-    | 'header-form';
+    | 'header';
   color?: string;
 }
 
@@ -24,7 +24,7 @@ export function Text({type, children, color}: TextProps) {
     'btn-primary': <StyledButtonPrimary>{children}</StyledButtonPrimary>,
     'btn-secondary': <StyledButtonSecondary>{children}</StyledButtonSecondary>,
     tag: <StyledTag color={color}>{children}</StyledTag>,
-    'header-form': <StyledHeaderForm>{children}</StyledHeaderForm>,
+    header: <StyledHeaderForm>{children}</StyledHeaderForm>,
   };
 
   return textType[type];

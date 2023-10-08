@@ -1,8 +1,8 @@
-export {Button} from './button';
 export {BottomModal} from './bottom-modal';
-export {CardDate} from './card-date';
-export {HeaderForm} from './header-form';
+export {Button} from './button';
+export {CardSchedule} from './card-schedule';
 export {Header} from './header';
+export {HeaderHome} from './header-home';
 export {Tag} from './tag';
 export {Text} from './text';
 

@@ -3,7 +3,7 @@ import {FlatList, FlatListProps} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
-import {Button, CardDate, Header, Text} from '@components';
+import {Button, CardSchedule, HeaderHome, Text} from '@components';
 import {AuthRootStackParamList, DateDTO, UserDTO} from '@types';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
@@ -65,7 +65,7 @@ export function Home({user: {name}, handlePressSchedule}: HomeProps) {
 
   return (
     <>
-      <Header name={name} />
+      <HeaderHome name={name} />
       <StyledContainer edges={['bottom', 'left', 'right']}>
         <StyledList
           data={date}
@@ -88,7 +88,7 @@ export function Home({user: {name}, handlePressSchedule}: HomeProps) {
 const renderItem = (
   {item}: {item: DateDTO},
   handlePressSchedule: (schedule: DateDTO) => void,
-) => <CardDate date={item} onPress={() => handlePressSchedule(item)} />;
+) => <CardSchedule date={item} onPress={() => handlePressSchedule(item)} />;
 
 const itemSeparator = () => <StyledDivider />;
 

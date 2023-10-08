@@ -3,7 +3,7 @@ import {Dimensions, FlatList, FlatListProps} from 'react-native';
 import styled from 'styled-components/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Control, useWatch} from 'react-hook-form';
-import {Button, Field, HeaderForm, Text} from '@components';
+import {Button, Field, Header, Text} from '@components';
 import {
   ScheduleAppointmentStepProps,
   ValidationScheduleAppointmentSchemaProps,
@@ -45,7 +45,11 @@ export function ScheduleAppointment({
 
   return (
     <StyledContainer edges={['bottom', 'left', 'right']}>
-      <HeaderForm leftIcon="chevron-left" handlePressLeftIcon={onPressBack} />
+      <Header
+        title="Agendar Consulta"
+        leftIcon="chevron-left"
+        handlePressLeftIcon={onPressBack}
+      />
       <StyledFormContainer>
         <StyledList
           data={STEPS}

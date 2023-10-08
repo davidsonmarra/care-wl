@@ -1,30 +1,21 @@
 import React, {memo} from 'react';
 import {TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
-import {format} from 'date-fns';
+import {formatDate, getCategory} from '@helpers';
+import {DateDTO} from '@types';
 import {Tag} from './tag';
 import {Text} from './text';
-import {getCategory} from '@helpers';
-import {DateDTO} from '@types';
 
-interface CardDateProps extends TouchableOpacityProps {
+interface CardScheduleProps extends TouchableOpacityProps {
   date: DateDTO;
 }
 
-function CardDateComponent({
+function CardScheduleComponent({
   date: {tag = 'first', hour, doctor, type, date},
   onPress,
-}: CardDateProps) {
+}: CardScheduleProps) {
   const {colorBackground, colorText, text: textTag} = getCategory[tag];
-  const parts = date.split('-');
-  const formattedDate = new Date(
-    Number(parts[0]),
-    Number(parts[1]),
-    Number(parts[2]),
-  );
-
-  const day = format(formattedDate, 'dd');
-  const month = format(formattedDate, 'MMM');
+  const {day, month} = formatDate(date);
 
   return (
     <StyledContainer onPress={onPress}>
@@ -101,6 +92,9 @@ const StyledInfoContainer = styled.View`
   align-items: flex-end;
 `;
 
-export const CardDate = memo(CardDateComponent, (prevProps, nextProps) => {
-  return Object.is(prevProps.date, nextProps.date);
-});
+export const CardSchedule = memo(
+  CardScheduleComponent,
+  (prevProps, nextProps) => {
+    return Object.is(prevProps.date, nextProps.date);
+  },
+);
