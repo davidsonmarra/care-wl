@@ -66,13 +66,13 @@
 		6C6420162A86AD4A00956DE6 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C641FF12A86AD4A00956DE6 /* MaterialCommunityIcons.ttf */; };
 		6C6420172A86AD4A00956DE6 /* FontAwesome6_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C641FF22A86AD4A00956DE6 /* FontAwesome6_Regular.ttf */; };
 		6C6420182A86AD4A00956DE6 /* FontAwesome6_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C641FF22A86AD4A00956DE6 /* FontAwesome6_Regular.ttf */; };
-		6C919C752A85A66300E0FE2A /* DrPedro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C06C5F32A85A1AE0069EB48 /* DrPedro.plist */; };
 		6C919CA02A85AAE800E0FE2A /* WhiteLabelConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C919C9F2A85AAE800E0FE2A /* WhiteLabelConfig.m */; };
 		6C919CA22A85AB1800E0FE2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C919CA12A85AB1800E0FE2A /* Images.xcassets */; };
 		6C919CA42A85AD3A00E0FE2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C919CA32A85AD3A00E0FE2A /* Images.xcassets */; };
 		795895FFA96249B1B403FA56 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0D34C82390640B9A89789B3 /* Inter-SemiBold.ttf */; };
 		7D4BA69645CF4744A0587BC8 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DF75DB82542441D99744CC4 /* Inter-Black.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9142ED462AD246C8004B5E28 /* DrPedro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9142ED452AD2467C004B5E28 /* DrPedro.plist */; };
 		97CA4DDA2F934396A754FD4A /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FB68CA5C74A4794FBBB68 /* Inter-Medium.ttf */; };
 		B27432C3A85C4DEF8596EE5F /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C17B74881BF497E91A66158 /* Inter-Thin.ttf */; };
 		D9F9B97BEA844803B4265F1F /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2250F84D116844EB94E1F42C /* Inter-Regular.ttf */; };
@@ -114,7 +114,6 @@
 		63AD29809FB271DF34DAB40D /* Pods-DraIgraine-DrPedro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DraIgraine-DrPedro.release.xcconfig"; path = "Target Support Files/Pods-DraIgraine-DrPedro/Pods-DraIgraine-DrPedro.release.xcconfig"; sourceTree = "<group>"; };
 		6C06C5DC2A859E180069EB48 /* WhiteLabelConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhiteLabelConfig.h; sourceTree = "<group>"; };
 		6C06C5F22A85A1AE0069EB48 /* DrPedro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrPedro.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C06C5F32A85A1AE0069EB48 /* DrPedro.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DrPedro.plist; path = "/Users/davidsonmarra/Development/care-wl/ios/DrPedro.plist"; sourceTree = "<absolute>"; };
 		6C06C5F52A85A25A0069EB48 /* WhiteLabelConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhiteLabelConfig.m; sourceTree = "<group>"; };
 		6C641FE02A86AD4A00956DE6 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		6C641FE12A86AD4A00956DE6 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -144,6 +143,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = careWL/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-careWL-careWLTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-careWL-careWLTests.release.xcconfig"; path = "Target Support Files/Pods-careWL-careWLTests/Pods-careWL-careWLTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A9901AD67394E4F8EFC606F /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
+		9142ED452AD2467C004B5E28 /* DrPedro.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DrPedro.plist; path = "/Users/davidson.vieira/Development/care-wl/ios/DrPedro.plist"; sourceTree = "<absolute>"; };
 		9992D1E6611F45C7AC84048B /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLight.ttf"; path = "../assets/fonts/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
 		9C17B74881BF497E91A66158 /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../assets/fonts/Inter-Thin.ttf"; sourceTree = "<group>"; };
 		9CA19E346E621152E5882876 /* Pods-DraIgraine-careWLTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DraIgraine-careWLTests.debug.xcconfig"; path = "Target Support Files/Pods-DraIgraine-careWLTests/Pods-DraIgraine-careWLTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -256,8 +256,8 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
-				6C06C5F32A85A1AE0069EB48 /* DrPedro.plist */,
 				842C91F199BC41C9A2F49A76 /* Resources */,
+				9142ED452AD2467C004B5E28 /* DrPedro.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -484,6 +484,7 @@
 				6C641FD82A869A5D00956DE6 /* Inter-Bold.ttf in Resources */,
 				6C64200E2A86AD4A00956DE6 /* FontAwesome5_Regular.ttf in Resources */,
 				6C6420082A86AD4A00956DE6 /* Fontisto.ttf in Resources */,
+				9142ED462AD246C8004B5E28 /* DrPedro.plist in Resources */,
 				6C641FDB2A869A6300956DE6 /* Inter-Light.ttf in Resources */,
 				6C64200C2A86AD4A00956DE6 /* AntDesign.ttf in Resources */,
 				6C641FDE2A869A6900956DE6 /* Inter-SemiBold.ttf in Resources */,
@@ -492,7 +493,6 @@
 				6C641FF42A86AD4A00956DE6 /* FontAwesome5_Brands.ttf in Resources */,
 				6C6420122A86AD4A00956DE6 /* FontAwesome6_Brands.ttf in Resources */,
 				6C641FDA2A869A6100956DE6 /* Inter-ExtraLight.ttf in Resources */,
-				6C919C752A85A66300E0FE2A /* DrPedro.plist in Resources */,
 				6C641FFA2A86AD4A00956DE6 /* MaterialIcons.ttf in Resources */,
 				6C641FFC2A86AD4A00956DE6 /* SimpleLineIcons.ttf in Resources */,
 				6C641FF62A86AD4A00956DE6 /* Feather.ttf in Resources */,
