@@ -12,3 +12,8 @@ export interface ValidationScheduleAppointmentSchemaProps {
 export interface ValidationScheduleEditDateSchemaProps {
   date: string;
 }
+
+export interface ValidationPersonalSchemaProps {
+  name: string;
+  email: string;
+}

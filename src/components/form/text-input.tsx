@@ -3,12 +3,14 @@ import {TextInputProps as RNTextInputProps} from 'react-native';
 import styled, {useTheme} from 'styled-components/native';
 import {Control, Controller} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import {ValidationLoginSchemaProps} from '@types';
+import {
+  ValidationLoginSchemaProps,
+  ValidationPersonalSchemaProps,
+} from '@types';
 
 interface TextInputProps extends RNTextInputProps {
-  control: Control<ValidationLoginSchemaProps>;
-  name: keyof ValidationLoginSchemaProps;
+  control: Control<any>;
+  name: keyof ValidationLoginSchemaProps | keyof ValidationPersonalSchemaProps;
   password?: boolean;
 }
 
@@ -16,6 +18,7 @@ export function TextInput({
   password = false,
   control,
   name,
+  editable = true,
   ...rest
 }: TextInputProps) {
   const [showPassword, setShowPassword] = useState(password);
@@ -30,7 +33,7 @@ export function TextInput({
 
   return (
     <>
-      <StyledContainer>
+      <StyledContainer editable={editable}>
         <Controller
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
@@ -40,6 +43,7 @@ export function TextInput({
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
+                editable={editable}
                 {...rest}
               />
               {password && (
@@ -60,13 +64,14 @@ export function TextInput({
   );
 }
 
-const StyledContainer = styled.View`
+const StyledContainer = styled.View<{editable: boolean}>`
   width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
-  background-color: ${({theme}) => theme.colors.secondary};
+  background-color: ${({theme, editable}) =>
+    editable ? theme.colors.secondary : theme.colors.disabled};
 `;
 
 const StyledInput = styled.TextInput.attrs(({theme}) => ({

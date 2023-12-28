@@ -58,6 +58,7 @@ const scheduleAppointmentSlice = createSlice({
       error: payload,
       isLoading: false,
     }),
+    RESET: () => initialState,
   },
 });
 
@@ -70,5 +71,6 @@ export const {
   GET_CATEGORIES,
   GET_CATEGORIES_FAILURE,
   GET_CATEGORIES_SUCCESS,
+  RESET,
 } = actions;
 export default reducer;

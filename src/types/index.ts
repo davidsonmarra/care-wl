@@ -2,6 +2,7 @@ export type {
   ValidationLoginSchemaProps,
   ValidationScheduleAppointmentSchemaProps,
   ValidationScheduleEditDateSchemaProps,
+  ValidationPersonalSchemaProps,
 } from './schemas';
 
 export interface BottomModalRefProps {

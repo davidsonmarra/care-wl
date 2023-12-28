@@ -3,12 +3,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useDispatch} from 'react-redux';
 import {
   HomeScreen,
+  PersonalScreen,
   ScheduleAppointmentScreen,
   ScheduleDetailsScreen,
+  ScheduleEditDateScreen,
 } from '../screens';
 import {AuthRootStackParamList} from '@types';
 import {actionsProfile} from '@store';
-import {ScheduleEditDateScreen} from '../screens/schedule-edit-date-screen';
 
 const {Screen, Navigator} =
   createNativeStackNavigator<AuthRootStackParamList>();
@@ -34,6 +35,7 @@ export function AuthRoutes() {
       />
       <Screen name="ScheduleDetails" component={ScheduleDetailsScreen} />
       <Screen name="ScheduleEditDate" component={ScheduleEditDateScreen} />
+      <Screen name="Personal" component={PersonalScreen} />
     </Navigator>
   );
 }

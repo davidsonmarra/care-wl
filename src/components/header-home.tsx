@@ -2,6 +2,8 @@ import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {Text} from './text';
+import {AuthRootStackParamList} from '@types';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 interface HeaderProps {
   name: string;
@@ -9,10 +11,12 @@ interface HeaderProps {
 
 export function HeaderHome({name = ''}: HeaderProps) {
   const {top} = useSafeAreaInsets();
+  const {navigate} =
+    useNavigation<NavigationProp<AuthRootStackParamList, 'Home'>>();
 
   return (
     <StyledContainer topInset={top}>
-      <StyledUserContainer>
+      <StyledUserContainer onPress={() => navigate('Personal')}>
         <StyledImage source={{uri: `https://ui-avatars.com/api/${name}`}} />
         <StyledInfoContainer>
           <Text type="text">Olá,</Text>

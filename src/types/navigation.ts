@@ -9,4 +9,5 @@ export type AuthRootStackParamList = {
   ScheduleAppointment: undefined;
   ScheduleDetails: {schedule: DateDTO};
   ScheduleEditDate: {schedule: DateDTO};
+  Personal: undefined;
 };

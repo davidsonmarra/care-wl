@@ -14,7 +14,7 @@ import {
 import {actionsScheduleAppointment} from '@store';
 import {Alert} from 'react-native';
 
-const {GET_CATEGORIES} = actionsScheduleAppointment;
+const {GET_CATEGORIES, RESET} = actionsScheduleAppointment;
 
 export function ScheduleAppointmentScreen() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -22,10 +22,16 @@ export function ScheduleAppointmentScreen() {
 
   const {bottom} = useSafeAreaInsets();
   const {goBack} = useNavigation<NavigationProp<AuthRootStackParamList>>();
-  const {control, handleSubmit, setValue} =
+  const {control, handleSubmit, setValue, reset} =
     useForm<ValidationScheduleAppointmentSchemaProps>({});
 
   const dispatch = useDispatch();
+
+  const handleBack = () => {
+    reset();
+    dispatch(RESET());
+    goBack();
+  };
 
   const onSubmit = () => {
     if (currentStep === STEPS.length - 1) {
@@ -72,7 +78,7 @@ export function ScheduleAppointmentScreen() {
       bottomInset={bottom}
       currentStep={currentStep}
       onPressBack={() =>
-        verifyIfScrollIsPossible(-1) ? scrollToBackStep() : goBack()
+        verifyIfScrollIsPossible(-1) ? scrollToBackStep() : handleBack()
       }
       onSubmit={onSubmit}
       control={control}

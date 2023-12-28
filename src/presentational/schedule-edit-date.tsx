@@ -51,7 +51,7 @@ export function ScheduleEditDate({
       </StyledFormContainer>
       <StyledButtonContainer bottomInset={bottomInset}>
         <Button disabled={buttonDisabled} type="primary" onPress={onSubmit}>
-          <Text type="btn-primary">Avançar</Text>
+          <Text type="btn-primary">Editar</Text>
         </Button>
       </StyledButtonContainer>
     </StyledContainer>

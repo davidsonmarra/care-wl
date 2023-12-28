@@ -1,12 +1,17 @@
 import React from 'react';
 import {Control} from 'react-hook-form';
 import {TextInputProps} from 'react-native';
-import {ValidationLoginSchemaProps} from '@types';
+import {
+  ValidationLoginSchemaProps,
+  ValidationPersonalSchemaProps,
+} from '@types';
 import {TextInput} from './text-input';
 
 interface InputProps extends TextInputProps {
-  control: Control<ValidationLoginSchemaProps>;
-  name: keyof ValidationLoginSchemaProps;
+  control:
+    | Control<ValidationLoginSchemaProps>
+    | Control<ValidationPersonalSchemaProps>;
+  name: keyof ValidationLoginSchemaProps | keyof ValidationPersonalSchemaProps;
   type: 'text' | 'password';
 }
 
