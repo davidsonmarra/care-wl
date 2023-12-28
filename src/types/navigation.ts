@@ -8,4 +8,5 @@ export type AuthRootStackParamList = {
   Home: undefined;
   ScheduleAppointment: undefined;
   ScheduleDetails: {schedule: DateDTO};
+  ScheduleEditDate: {schedule: DateDTO};
 };

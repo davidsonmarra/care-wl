@@ -8,6 +8,7 @@ import {
 } from '../screens';
 import {AuthRootStackParamList} from '@types';
 import {actionsProfile} from '@store';
+import {ScheduleEditDateScreen} from '../screens/schedule-edit-date-screen';
 
 const {Screen, Navigator} =
   createNativeStackNavigator<AuthRootStackParamList>();
@@ -32,6 +33,7 @@ export function AuthRoutes() {
         component={ScheduleAppointmentScreen}
       />
       <Screen name="ScheduleDetails" component={ScheduleDetailsScreen} />
+      <Screen name="ScheduleEditDate" component={ScheduleEditDateScreen} />
     </Navigator>
   );
 }

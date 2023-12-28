@@ -3,20 +3,32 @@ import {Control} from 'react-hook-form';
 import styled from 'styled-components/native';
 import {Text} from '../text';
 import {Calendar} from './calendar';
-import {ValidationScheduleAppointmentSchemaProps} from '@types';
+import {
+  ValidationScheduleAppointmentSchemaProps,
+  ValidationScheduleEditDateSchemaProps,
+} from '@types';
 import {TextInput} from './text-input';
 import {Select} from './select';
+
+type SetValueScheduleAppointment = (
+  name: keyof ValidationScheduleAppointmentSchemaProps,
+  value: string,
+) => void;
+
+type SetValueScheduleEditDate = (
+  name: keyof ValidationScheduleEditDateSchemaProps,
+  value: string,
+) => void;
 
 interface FieldProps {
   type: 'date' | 'select' | 'text';
   title: string;
   description: string;
-  control: Control<ValidationScheduleAppointmentSchemaProps>;
+  control:
+    | Control<ValidationScheduleAppointmentSchemaProps>
+    | Control<ValidationScheduleEditDateSchemaProps>;
   name: string;
-  setValue: (
-    name: keyof ValidationScheduleAppointmentSchemaProps,
-    value: string,
-  ) => void;
+  setValue: SetValueScheduleAppointment | SetValueScheduleEditDate;
 }
 
 const inputTypes = (props: any) => ({

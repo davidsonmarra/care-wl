@@ -8,3 +8,7 @@ export interface ValidationScheduleAppointmentSchemaProps {
   date: string;
   obs?: string;
 }
+
+export interface ValidationScheduleEditDateSchemaProps {
+  date: string;
+}

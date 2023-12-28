@@ -1,5 +1,6 @@
 export {BottomModal} from './bottom-modal';
 export {Button} from './button';
+export {CardDate} from './card-date';
 export {CardSchedule} from './card-schedule';
 export {Header} from './header';
 export {HeaderHome} from './header-home';

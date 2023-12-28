@@ -21,6 +21,7 @@ import {Text} from './text';
 interface BottomModalProps extends ModalProps {
   title?: string;
   icon?: string;
+  color?: string;
 }
 
 const MAX_TRANSLATE_X = -SCREEN_HEIGHT + 50;
@@ -28,7 +29,7 @@ const MAX_TRANSLATE_X = -SCREEN_HEIGHT + 50;
 const AnimatedView = Animated.createAnimatedComponent(View);
 
 export const BottomModal = forwardRef<BottomModalRefProps, BottomModalProps>(
-  ({title, children}, ref) => {
+  ({title, icon, color, children}, ref) => {
     const {colors} = useTheme();
 
     const translateY = useSharedValue(0);
@@ -113,9 +114,9 @@ export const BottomModal = forwardRef<BottomModalRefProps, BottomModalProps>(
             <StyledLine />
             <StyledTitleContainer>
               <Icon
-                name="report-gmailerrorred"
+                name={icon || 'report-gmailerrorred'}
                 size={56}
-                color={colors.error}
+                color={color || colors.error}
               />
               <StyledDivider value={8} />
               <Text type="modal-title">{title}</Text>
