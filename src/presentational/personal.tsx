@@ -1,22 +1,31 @@
-import React from 'react';
-import {Button, Header, Input, Text} from '@components';
-import {ValidationPersonalSchemaProps} from '@types';
-import {Control} from 'react-hook-form';
+import React, {RefObject} from 'react';
+import {BottomModal, Button, Header, Input, Text} from '@components';
+import {BottomModalRefProps, ValidationPersonalSchemaProps} from '@types';
+import {Control, FieldErrors} from 'react-hook-form';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+import {AxiosError} from 'axios';
 
 interface PersonalProps {
   control: Control<ValidationPersonalSchemaProps>;
   bottomInset?: number;
+  isDirty: boolean;
+  modalRef: RefObject<BottomModalRefProps>;
+  errors: FieldErrors<ValidationPersonalSchemaProps>;
+  apiError: AxiosError<any>;
+  handleToggleModal: () => void;
   onPressBack: () => void;
   handleSubmit: () => void;
-  isDirty: boolean;
 }
 
 export function Personal({
   control,
   bottomInset = 0,
   isDirty,
+  modalRef,
+  errors,
+  apiError,
+  handleToggleModal,
   onPressBack,
   handleSubmit,
 }: PersonalProps) {
@@ -55,12 +64,39 @@ export function Personal({
           type="text"
           name="name"
         />
+        <StyledDivider value={16} />
+        <Text type="text">Telefone</Text>
+        <StyledDivider value={8} />
+        <Input
+          control={control}
+          autoCorrect={false}
+          autoCapitalize="words"
+          keyboardType="numeric"
+          placeholder="Telefone"
+          type="text"
+          name="phone"
+          mask="phone"
+        />
       </StyledFormContainer>
       <StyledButtonContainer bottomInset={bottomInset}>
         <Button disabled={!isDirty} type="primary" onPress={handleSubmit}>
           <Text type="btn-primary">Salvar</Text>
         </Button>
       </StyledButtonContainer>
+      <BottomModal
+        title="Ops... algo deu errado"
+        icon="report-gmailerrorred"
+        ref={modalRef}>
+        <Text type="text">
+          {errors.name?.message ||
+            errors.phone?.message ||
+            apiError?.response?.data?.message}
+        </Text>
+        <Button type="secondary" onPress={handleToggleModal}>
+          <StyledDivider value={8} />
+          <Text type="btn-secondary">Tentar Novamente</Text>
+        </Button>
+      </BottomModal>
     </StyledContainer>
   );
 }

@@ -47,7 +47,8 @@ export function makeServer({environment = 'development'} = {}) {
             {},
             {
               name: 'Davidson Marra',
-              role: 'patient',
+              phone: '31997654219',
+              role: 'user',
             },
           );
         },

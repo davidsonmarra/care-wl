@@ -9,8 +9,12 @@ export const validateSchemaLogin = Yup.object().shape({
     .required('Campo de senha obrigatório'),
 });
 
-export const validateSchemaScheduleAppointment = Yup.object().shape({
-  obs: Yup.string(),
-  type: Yup.string().required('Campo de tipo de consulta obrigatório'),
-  date: Yup.string().required('Campo de data obrigatório'),
+export const validateSchemaPersonal = Yup.object().shape({
+  name: Yup.string().required('Campo de nome obrigatório'),
+  email: Yup.string()
+    .email('Email inválido')
+    .required('Campo de e-mail obrigatório'),
+  phone: Yup.string()
+    .min(15, 'Telefone inválido')
+    .required('Campo de telefone obrigatório'),
 });

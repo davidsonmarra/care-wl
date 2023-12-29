@@ -1,6 +1,7 @@
 export interface UserDTO {
   name: string;
-  role: 'doctor' | 'patient';
+  phone: string;
+  role: 'user' | 'admin';
 }
 
 export interface DateDTO {

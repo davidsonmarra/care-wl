@@ -7,18 +7,25 @@ import {
   ValidationLoginSchemaProps,
   ValidationPersonalSchemaProps,
 } from '@types';
+import {formatPhoneMask} from '@helpers';
 
 interface TextInputProps extends RNTextInputProps {
   control: Control<any>;
   name: keyof ValidationLoginSchemaProps | keyof ValidationPersonalSchemaProps;
   password?: boolean;
+  mask?: 'phone';
 }
+
+const masks = {
+  phone: formatPhoneMask,
+};
 
 export function TextInput({
   password = false,
   control,
   name,
   editable = true,
+  mask,
   ...rest
 }: TextInputProps) {
   const [showPassword, setShowPassword] = useState(password);
@@ -41,7 +48,9 @@ export function TextInput({
               <StyledInput
                 secureTextEntry={showPassword}
                 onBlur={onBlur}
-                onChangeText={onChange}
+                onChangeText={valueText =>
+                  onChange(mask ? masks[mask](valueText) : valueText)
+                }
                 value={value}
                 editable={editable}
                 {...rest}

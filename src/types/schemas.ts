@@ -16,4 +16,5 @@ export interface ValidationScheduleEditDateSchemaProps {
 export interface ValidationPersonalSchemaProps {
   name: string;
   email: string;
+  phone: string;
 }

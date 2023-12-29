@@ -13,6 +13,7 @@ interface InputProps extends TextInputProps {
     | Control<ValidationPersonalSchemaProps>;
   name: keyof ValidationLoginSchemaProps | keyof ValidationPersonalSchemaProps;
   type: 'text' | 'password';
+  mask?: 'phone';
 }
 
 export function Input({type, ...rest}: InputProps) {
