@@ -5,4 +5,4 @@ export {formatPhoneMask, formatPhoneUnmask} from './format-phone-mask';
 export {ptBR} from './locale-config';
 export {storage} from './storage';
 export {validateSchemaLogin, validateSchemaPersonal} from './schemas';
-export {SCHEDULE_APPOINTMENT_STEPS} from './steps';
+export {SCHEDULE_APPOINTMENT_STEPS, SIGN_UP_STEPS} from './steps';

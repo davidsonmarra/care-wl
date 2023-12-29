@@ -1,4 +1,5 @@
 import {ScheduleAppointmentStepProps} from '@types';
+import {SignUpStepProps} from 'src/types/steps';
 
 export const SCHEDULE_APPOINTMENT_STEPS: ScheduleAppointmentStepProps[] = [
   {
@@ -25,5 +26,36 @@ export const SCHEDULE_APPOINTMENT_STEPS: ScheduleAppointmentStepProps[] = [
     numberOfLines: 4,
     style: {height: 250},
     required: false,
+  },
+];
+
+export const SIGN_UP_STEPS: SignUpStepProps[] = [
+  {
+    title: 'Nome',
+    description: 'Digite seu nome completo',
+    field: 'name',
+    type: 'text',
+    required: true,
+  },
+  {
+    title: 'E-mail',
+    description: 'Digite seu e-mail',
+    field: 'email',
+    type: 'text',
+    required: true,
+  },
+  {
+    title: 'Telefone',
+    description: 'Digite seu telefone',
+    field: 'phone',
+    type: 'text',
+    required: true,
+  },
+  {
+    title: 'Senha',
+    description: 'Digite sua senha',
+    field: 'password',
+    type: 'text',
+    required: true,
   },
 ];

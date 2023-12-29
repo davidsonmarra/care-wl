@@ -1,5 +1,6 @@
 export type {
   ValidationLoginSchemaProps,
+  ValidationSignUpSchemaProps,
   ValidationScheduleAppointmentSchemaProps,
   ValidationScheduleEditDateSchemaProps,
   ValidationPersonalSchemaProps,
@@ -23,4 +24,4 @@ export type {
 
 export type {UserDTO, DateDTO, CategoryDTO} from './DTOs';
 
-export type {ScheduleAppointmentStepProps} from './steps';
+export type {ScheduleAppointmentStepProps, SignUpStepProps} from './steps';

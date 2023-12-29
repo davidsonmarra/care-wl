@@ -3,6 +3,13 @@ export interface ValidationLoginSchemaProps {
   password: string;
 }
 
+export interface ValidationSignUpSchemaProps {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+}
+
 export interface ValidationScheduleAppointmentSchemaProps {
   type: string;
   date: string;

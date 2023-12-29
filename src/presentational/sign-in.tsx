@@ -10,12 +10,13 @@ import {AxiosError} from 'axios';
 
 interface SignInProps {
   control: Control<ValidationLoginSchemaProps>;
-  handleSubmit: () => void;
-  handleToggleModal: () => void;
   isLoading: boolean;
   modalRef: RefObject<BottomModalRefProps>;
   errors: FieldErrors<ValidationLoginSchemaProps>;
   apiError: AxiosError<any>;
+  handleSubmit: () => void;
+  handleToggleModal: () => void;
+  handleSignUp: () => void;
 }
 
 export function SignIn({
@@ -26,6 +27,7 @@ export function SignIn({
   modalRef,
   errors,
   apiError,
+  handleSignUp,
 }: SignInProps) {
   const {
     fonts: {size},
@@ -70,7 +72,7 @@ export function SignIn({
           <Button type="primary" onPress={handleSubmit} isLoading={isLoading}>
             <Text type="btn-primary">Entrar</Text>
           </Button>
-          <Button type="secondary">
+          <Button type="secondary" onPress={handleSignUp}>
             <Text type="btn-secondary">Criar conta</Text>
           </Button>
         </StyledButtonContainer>

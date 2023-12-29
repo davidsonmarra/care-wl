@@ -5,7 +5,12 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {SignIn} from '@presentational';
 import {actionsProfile, RootStateProps} from '@store';
 import {validateSchemaLogin} from '@helpers';
-import {BottomModalRefProps, ValidationLoginSchemaProps} from '@types';
+import {
+  BottomModalRefProps,
+  PublicRootStackParamList,
+  ValidationLoginSchemaProps,
+} from '@types';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const {LOGIN} = actionsProfile;
 
@@ -15,6 +20,8 @@ export function SignInScreen() {
   const {isLoading, error} = useSelector(
     ({profile}: RootStateProps) => profile,
   );
+  const {navigate} =
+    useNavigation<NavigationProp<PublicRootStackParamList, 'SignIn'>>();
 
   const {
     control,
@@ -44,12 +51,13 @@ export function SignInScreen() {
   return (
     <SignIn
       control={control}
-      handleSubmit={handleSubmit(handleLogin)}
-      handleToggleModal={handleToggleModal}
       isLoading={isLoading}
       modalRef={modalRef}
       errors={errors}
       apiError={error}
+      handleSubmit={handleSubmit(handleLogin)}
+      handleToggleModal={handleToggleModal}
+      handleSignUp={() => navigate('SignUp')}
     />
   );
 }

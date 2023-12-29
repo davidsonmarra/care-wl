@@ -6,6 +6,7 @@ import {Calendar} from './calendar';
 import {
   ValidationScheduleAppointmentSchemaProps,
   ValidationScheduleEditDateSchemaProps,
+  ValidationSignUpSchemaProps,
 } from '@types';
 import {TextInput} from './text-input';
 import {Select} from './select';
@@ -20,15 +21,24 @@ type SetValueScheduleEditDate = (
   value: string,
 ) => void;
 
+type SetValueSignUp = (
+  name: keyof ValidationSignUpSchemaProps,
+  value: string,
+) => void;
+
 interface FieldProps {
   type: 'date' | 'select' | 'text';
   title: string;
   description: string;
   control:
     | Control<ValidationScheduleAppointmentSchemaProps>
-    | Control<ValidationScheduleEditDateSchemaProps>;
+    | Control<ValidationScheduleEditDateSchemaProps>
+    | Control<ValidationSignUpSchemaProps>;
   name: string;
-  setValue: SetValueScheduleAppointment | SetValueScheduleEditDate;
+  setValue:
+    | SetValueScheduleAppointment
+    | SetValueScheduleEditDate
+    | SetValueSignUp;
 }
 
 const inputTypes = (props: any) => ({
